@@ -13,9 +13,9 @@ password_type = st.selectbox(
 if password_type == 'Pin':
     length = st.slider('Password legnth:', 8, 16)
     pin_generated_password = pin_password_generator(length)
-    user_choice = st.toggle('Do you want to see your password?')
+    user_choice = st.toggle('To see your generated password:')
     if user_choice:
-        st.success(f'Here is your password: {pin_generated_password})')
+        st.success(f'Here is your password: {pin_generated_password}')
 
 elif password_type == 'Words':
     user_vocab_confirmation = st.checkbox('Do you have any words you want to make your password with?')
@@ -25,7 +25,7 @@ elif password_type == 'Words':
         length = st.slider('Password length (number of words):', 4, 8)
         capitalization = st.checkbox('Should words be capitalaized?')
         seperator = st.text_input('Words are seperated with (for example ","):')
-        all_capitalized= st.checkbox('Do you want all the words to be capitalized?')
+        all_capitalized= st.checkbox('To see your generated password:')
         
         words_generated_password = words_password_generator(
             length,
@@ -35,27 +35,27 @@ elif password_type == 'Words':
             user_vocab
         )   
         
-        user_choice = st.toggle('Do you want to see your generated password?')
+        user_choice = st.toggle('To see your generated password:')
         if user_choice:
-            st.success(f'Here is your password: {words_generated_password})')
+            st.success(f'Here is your password: {words_generated_password}')
 
     else:
         length = st.slider('Password length (number of words):', 4, 8)
         capitalization = st.checkbox('Should words be capitalized?')
         seperator = st.text_input('Words are seperated with (for example ","):')
-        all_capitalized= st.checkbox('Do you want all the words to be capitalized?')
+        capitalized= st.checkbox('Do you want the first word to be capitalized?')
         
         words_generated_password = words_password_generator(
             length,
             capitalization,
-            all_capitalized,
+            capitalized,
             seperator,
             vocabulary=False
         )
         
-        user_choice = st.toggle('Do you want to see your generated password?')
+        user_choice = st.toggle('To see your generated password:')
         if user_choice:
-            st.success(f'Here is your password: {words_generated_password})')
+            st.success(f'Here is your password: {words_generated_password}')
             
 elif password_type == 'Random':
     with st.form('my_form'):
@@ -64,7 +64,7 @@ elif password_type == 'Random':
         include_numbers = st.checkbox('Include Numbers?')
         include_characters = st.checkbox('Include Characters (symbols)?')
         
-        submitted = st.form_submit_button('Click to start generating password')
+        submitted = st.form_submit_button('Click here to start generating a password')
         if submitted:
             if any([include_letters, include_numbers, include_characters]):
                 random_generated_password = random_password_generator(
@@ -74,9 +74,9 @@ elif password_type == 'Random':
                     include_characters
                 )
     
-                user_choice = st.toggle('Do you want to see your generated password?')
+                user_choice = st.toggle('To see your generated password:')
                 if user_choice:
-                        st.success(f'Here is your password: {random_generated_password})')
+                        st.success(f'Here is your password: {random_generated_password}')
             else:
                 st.info('Please select at least one option to generate a password.')
         
@@ -88,4 +88,4 @@ elif password_type == 'Memorable':
 
     user_choice = st.toggle('Do you want to see your generated password?')
     if user_choice:
-        st.success(f'Here is your password: {memorable_generated_password})')
+        st.success(f'Here is your password: {memorable_generated_password}')
